@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Hospital Management System</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-image: url('https://cdn.pixabay.com/photo/2021/10/03/03/47/doctor-6676747_1280.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<body class="bg-gray-100">
+    {% include 'navbar.html' %}
+    <br><br>
+    <div class="container mx-auto py-8 px-4">
+        <h1 class="text-4xl font-bold mb-8 text-center">Contact Us</h1>
+
+        <div class="flex flex-col md:flex-row items-center md:items-start">
+            <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0">
+                <h2 class="text-2xl font-semibold mb-4 text-center md:text-left">Location</h2>
+                <p class="text-gray-700 text-center md:text-left">123 Hospital Road</p>
+                <p class="text-gray-700 text-center md:text-left">City, State, Zip Code</p>
+                <div class="flex justify-center md:justify-start mt-4">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4016727.0245945593!2d73.49610367758648!3d10.533317078392!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0812ffd49cf55b%3A0x64bd90fbed387c99!2sKerala!5e0!3m2!1sen!2sin!4v1716753128444!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+            <div class="md:w-1/2 md:pl-8">
+                <h2 class="text-2xl font-semibold mb-4 text-center md:text-left">Contact Information</h2>
+                <p class="text-gray-700 text-center md:text-left">Phone: +123 456 7890</p>
+                <p class="text-gray-700 text-center md:text-left">Email: HealthEasy@gmail.com</p>
+            </div>
+        </div>
+        <div class="mt-12">
+            <h2 class="text-2xl font-semibold mb-4 text-center">Send us a Message</h2>
+            <form action="#" method="post" class="max-w-lg mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Your Name</label>
+                    <input type="text" id="name" name="name" required
+                           class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Your Email</label>
+                    <input type="email" id="email" name="email" required
+                           class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none shadow-sm">
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                              class="mt-1 p-2 w-full border border-gray-300 rounded-md focus:ring focus:ring-blue-200 focus:outline-none shadow-sm"></textarea>
+                </div>
+                <button type="submit"
+                        class="bg-blue-500 text-white font-semibold py-2 px-4 rounded focus:outline-none hover:bg-blue-600">Send Message</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments and Prescriptions</title>
+    <style>
+      
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Appointments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Doctor</th>
+                <th>Patient Name</th>
+                <th>Symptoms</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.doctor }}</td>
+                <td>{{ appointment.patient_name }}</td>
+                <td>{{ appointment.symptoms }}</td>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h1>Prescriptions</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Symptoms</th>
+                <th>Prescription</th>
+                <th>Patient Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+            <tr>
+                <td>{{ prescription.date }}</td>
+                <td>{{ prescription.time }}</td>
+                <td>{{ prescription.symptoms.symptoms }}</td>
+                <td>{{ prescription.prescription }}</td>
+                <td>{{ prescription.patient_name.patient_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+
+
+<form action="{% url 'create_receipt' %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="invoice_number">Invoice Number</label>
+        <input type="text" id="invoice_number" name="invoice_number" required>
+    </div>
+    <div class="form-group">
+        <label for="hospital_name">Hospital Name</label>
+        <input type="text" id="hospital_name" name="hospital_name" required>
+    </div>
+    <div class="form-group">
+        <label for="hospital_phone">Hospital Phone</label>
+        <input type="text" id="hospital_phone" name="hospital_phone" required>
+    </div>
+    <div class="form-group">
+        <label for="hospital_email">Hospital Email</label>
+        <input type="email" id="hospital_email" name="hospital_email" required>
+    </div>
+    <div class="form-group">
+        <label for="patient">Patient Name</label>
+        <input type="text" id="patient" name="patient" required>
+    </div>
+    <div class="form-group">
+        <label for="symptoms">Symptoms</label>
+        <input type="text" id="symptoms" name="symptoms" required>
+    </div>
+    <div class="form-group">
+        <label for="doctor">Doctor</label>
+        <input type="text" id="doctor" name="doctor" required>
+    </div>
+    <div class="form-group">
+        <label for="doctor_fee">Doctor Fee</label>
+        <input type="number" id="doctor_fee" name="doctor_fee" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="prescription">Prescription</label>
+        <input type="text" id="prescription" name="prescription" required>
+    </div>
+    <div class="form-group">
+        <label for="prescription_amount">Prescription Amount</label>
+        <input type="number" id="prescription_amount" name="prescription_amount" step="0.01" required>
+    </div>
+    <div class="form-group">
+        <label for="total_amount">Total Amount</label>
+        <input type="number" id="total_amount" name="total_amount" step="0.01" required>
+    </div>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

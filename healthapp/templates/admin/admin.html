@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            background-color: #343a40;
+            padding-top: 20px;
+        }
+        .sidebar a {
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+        }
+        .sidebar a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+        .navbar {
+            margin-left: 250px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+     a{
+         text-decoration: none;
+     }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h3 class="text-center text-white">Admin Dashboard</h3>
+        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="{% url 'add_doctor' %}"><i class="fas fa-user"></i> Add Doctor</a>
+        <a href="{% url 'create_receiptpage' %}"><i class="fa-solid fa-receipt"></i>Create Receipt</a>
+        <a href="{% url 'view_receiptpage' %}"><i class="fa-solid fa-receipt"></i>View Receipt</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+        <a href="{% url 'logoutadmin' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    </div>
+
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Admin Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logoutadmin' %}">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header font-weight-bold">PATIENTS</div>
+                        <div class="card-body">
+                            <a href="{% url 'view_patients' %}"><button type="button" class="btn btn-warning">View</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">                
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header font-weight-bold">DOCTORS</div>
+                        <div class="card-body">
+                            <a href="{% url 'view_doctors' %}"><button type="button" class="btn btn-warning">View</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="card text-white bg-dark mb-3">
+                        <div class="card-header font-weight-bold">PAYMENTS</div>
+                        <div class="card-body">
+                            <a href="{% url 'view_payment_page' %}"><button type="button" class="btn btn-warning">View</button></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                       
+                    <div class="card text-white bg-dark mb-3">
+                            <div class="card-header font-weight-bold">APPOINTMENTS</div>
+                        <div class="card-body">
+                            <a href="{% url 'adminview_appointments' %}"><button type="button" class="btn btn-warning">View</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header">
+                    Users Chart
+                </div>
+                <div class="card-body">
+                    <canvas id="usersChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Chart.js for the sales chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var ctx = document.getElementById('usersChart').getContext('2d');
+        var usersChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: 'users',
+                    data: [12000, 19000, 3000, 5000, 2000, 30000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

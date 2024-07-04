@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Notifications</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Appointment Notifications</h1>
+        {% for appointment in appointments %}
+        <div class="bg-white shadow-md rounded-lg p-4 mb-4">
+            <p class="text-lg font-semibold">Doctor: {{ appointment.doctor.name }}-{{ appointment.patient_name }}</p>
+            <p>Date: {{ appointment.date }}</p>
+            <p>Time: {{ appointment.time }}</p>
+            <p>Status: 
+                {% if appointment.status == 'Accepted' %}
+                    <span class="text-green-600 font-bold">Accepted</span>
+                    <p class="mt-2 text-green-400 font-bold">Your appointment request has been processed and confirmed. We look forward to seeing you.</p>
+                {% elif appointment.status == 'rejected' %}
+                    <span class="text-red-600 font-bold">Rejected</span>
+                    <p class="mt-2 text-red-500 font-bold">Appointment rejected. The doctor is not available on that date. Please reschedule for the next day.</p>
+                {% else %}
+                    <span class="text-gray-600">{{ appointment.status }}</span>
+                {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Prescription</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-center items-center">
+
+    <!-- Prescription Form Container -->
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="text-3xl font-bold text-center text-gray-800">Create Prescription</h1>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <form method="POST" action="create_prescription" class="space-y-6">
+                {% csrf_token %}
+
+                <!-- Appointment Selection -->
+                <div class="flex flex-col">
+                    <label for="appointment" class="text-sm font-semibold mb-1">Appointment:</label>
+                    <select id="appointment" name="appointment" required
+                            class="py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
+                        {% for appointment in appointments %}
+                            <option value="{{ appointment.id }}">{{ appointment.doctor.name }} - {{ appointment.patient_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <!-- symptoms -->
+                <div class="flex flex-col">
+                    <label for="symptoms" class="text-sm font-semibold mb-1">Symptoms:</label>
+                    <select id="symptoms" name="symptoms" required
+                            class="py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200">
+                        {% for appointment in appointments %}
+                            <option value="{{ appointment.id }}">{{ appointment.symptoms }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Prescription Input -->
+                <div class="flex flex-col">
+                    <label for="prescription" class="text-sm font-semibold mb-1">Prescription:</label>
+                    <textarea id="prescription" name="prescription" rows="4" required
+                      class="py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-200"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="flex justify-center">
+                    <button type="submit"
+                            class="py-2 px-4 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
+                        Create Prescription
+                    </button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <!-- Back Button -->
+    <a href="{% url 'dochomepage' %}" class="mt-4">
+        <button class="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">
+            Back
+        </button>
+    </a>
+
+</body>
+</html>

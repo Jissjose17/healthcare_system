@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<style>
+    body {
+        background-image: url();
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
+<body class="bg-gray-100">
+    {% include 'navbar.html' %} <br><br>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8">Book an Appointment</h1>
+
+        <!-- Search Bar -->
+        <div class="mb-8 text-center">
+            <input type="text" id="searchInput" class="px-4 py-2 border rounded-lg" placeholder="Search for doctors...">
+            <button onclick="searchDoctors()" class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Search</button>
+        </div>
+
+        <!-- Doctors Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="doctorsGrid">
+            {% for doctor in doctors %}
+            <div class="doctor-card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div class="flex justify-end px-4 pt-4">
+                    <button id="dropdownButton{{ doctor.id }}" data-dropdown-toggle="dropdown{{ doctor.id }}" class="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5" type="button">
+                        <span class="sr-only">Open dropdown</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 3">
+                            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z"/>
+                        </svg>
+                    </button>
+                    <!-- Dropdown menu -->
+                    <div id="dropdown{{ doctor.id }}" class="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                        <ul class="py-2" aria-labelledby="dropdownButton{{ doctor.id }}">
+                            <li>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+                            </li>
+                           
+                        </ul>
+                    </div>
+                </div>
+                <div class="flex flex-col items-center pb-10">
+                    {% if doctor.image %}
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="{{ doctor.image.url }}" alt="Doctor Image"/>
+                    {% else %}
+                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="/static/images/default-doctor.png" alt="Default Doctor Image"/>
+                    {% endif %}
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ doctor.name }}</h5>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ doctor.special }}</span><br>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ doctor.about }}</span>
+                    <div class="flex mt-4 md:mt-6">
+                        <a href="{% url 'create_appointmentpage' doctor.id %}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Book Appointment</a>
+                    </div>
+                    
+                    {% endfor %}
+               </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+    <script>
+        function searchDoctors() {
+            var input, filter, cards, cardContainer, h5, title, i;
+            input = document.getElementById('searchInput');
+            filter = input.value.toLowerCase();
+            cardContainer = document.getElementById('doctorsGrid');
+            cards = cardContainer.getElementsByClassName('doctor-card');
+
+            for (i = 0; i < cards.length; i++) {
+                title = cards[i].getElementsByTagName('h5')[0];
+                if (title.innerText.toLowerCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

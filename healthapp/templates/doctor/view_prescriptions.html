@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Prescriptions</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Additional Custom Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #374151;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #070708;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .delete-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #e3342f;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .delete-btn:hover {
+            background-color: #cc1f1a;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="text-3xl font-bold">Prescriptions</h1>
+    </header>
+    <main class="container mx-auto">
+        <ul>
+            {% for prescription in prescriptions %}
+                <li class="bg-white shadow-md rounded-lg p-6 mb-4">
+                    <p><strong>Date:</strong> {{ prescription.date }}</p>
+                    <p><strong>Time:</strong> {{ prescription.time }}</p>
+                    <p><strong>Doctor:</strong> {{ prescription.symptoms.doctor.name }}</p>
+                    <p><strong>Patient Name:</strong> {{ prescription.patient.name.patient.name }}</p>
+                    <p><strong>Symptoms:</strong> {{ prescription.symptoms.symptoms }}</p>
+                    <p><strong>Prescription:</strong> {{ prescription.prescription }}</p>
+                    <a href="{% url 'delete_prescription' prescription.id %}" class="delete-btn">Delete</a>
+                </li>
+            {% empty %}
+                <li class="text-gray-500">No prescriptions available.</li>
+            {% endfor %}
+        </ul>
+    </main>
+    <a href="{% url 'dochomepage' %}" class="block text-center text-white bg-green-500 hover:bg-green-600 rounded-lg py-2 px-4 mx-auto mt-8 w-max">Home</a>
+</body>
+</html>

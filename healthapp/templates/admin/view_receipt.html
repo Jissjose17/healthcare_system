@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Receipt</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-4">Receipt</h2>
+        <table class="table table-bordered mt-3">
+            <tbody>
+                <tr>
+                    <th scope="row">Invoice ID</th>
+                    <td>{{ receipt.invoice_number }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hospital Name</th>
+                    <td>{{ receipt.hospital_name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hospital Phone</th>
+                    <td>{{ receipt.hospital_phone }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Hospital Email</th>
+                    <td>{{ receipt.hospital_email }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Patient Name</th>
+                    <td>{{ receipt.patient_name.patient.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Symptoms</th>
+                    <td>{{ receipt.symptoms.symptoms }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Doctor</th>
+                    <td>{{ receipt.doctor.name }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Doctor Fee</th>
+                    <td>{{ receipt.doctor_fee }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Prescription</th>
+                    <td>{{ receipt.prescription.prescription }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Prescription Amount</th>
+                    <td>{{ receipt.prescription_amount }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Total Amount</th>
+                    <td>{{ receipt.total_amount }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="{% url 'adminpage' %}" class="btn btn-primary">Back</a>
+         </div>
+</body>
+</html>

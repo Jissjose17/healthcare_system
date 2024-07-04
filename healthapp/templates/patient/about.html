@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(231, 239, 240);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900">
+    {% include 'navbar.html' %}
+<br><br>
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-bold text-white mb-4">About Us</h2>
+                <p class="text-gray-300 leading-relaxed">Our online healthcare system is dedicated to providing top-notch medical services to patients from the comfort of their homes. With a mission to revolutionize the healthcare industry, we offer a wide range of services including virtual consultations, online prescriptions, and health monitoring.</p>
+            </div>
+
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Our Mission</h2>
+                <p class="text-gray-300 leading-relaxed">Our mission is to make healthcare accessible and convenient for everyone, leveraging the latest technology to deliver high-quality care. We strive to empower patients by providing them with the tools and resources they need to manage their health effectively.</p>
+            </div>
+
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Our Services</h2>
+                <ul class="list-disc list-inside text-gray-300 inline-block text-left">
+                    <li class="mb-2">Virtual Consultations with Certified Doctors</li>
+                    <li class="mb-2">Online Prescriptions and Medication Delivery</li>
+                    <li class="mb-2">Health Monitoring and Follow-ups</li>
+                    <li class="mb-2">Access to Medical Records and History</li>
+                </ul>
+            </div>
+
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Meet Our Team</h2>
+                <p class="text-gray-300 leading-relaxed">Our team consists of experienced healthcare professionals, including doctors, nurses, and support staff, all dedicated to providing the best possible care. We work together to ensure that our patients receive personalized and comprehensive healthcare services.</p>
+            </div>
+        </div>
+    </section>
+<br>
+<footer>
+        {% include 'footer.html' %}
+    </footer>
+</body>
+
+</html>

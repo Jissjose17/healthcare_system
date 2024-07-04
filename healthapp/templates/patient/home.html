@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: rgb(231, 239, 240);
+}
+
+.hero-image {
+  background-image:url("https://img.freepik.com/free-photo/covid-preventing-virus-healthcare-workers-vaccination-concept-closeup-satisfied-middleaged_1258-108000.jpg?t=st=1717872428~exp=1717876028~hmac=c8a8b43cbad57923b47f85c01cf6a0adee1ea32a768e9c68fd588a43f746a548&w=1380");
+  height: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        h1{
+            text-align: center; 
+            font-size: 30px;
+            color: rgb(7, 7, 7);
+            
+        }
+      h2{
+        text-align: center; 
+        font-size: 30px;
+
+      }
+
+
+        .choose-us-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            min-height: 400px;
+        }
+        .choose-us-container h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #3b3b58;
+            margin-bottom: 20px;
+        }
+        .choose-us-container p {
+            font-size: 1.25rem;
+            text-align: left;
+            line-height: 1.6;
+            flex: 1;
+            font-family: "Gill Sans", sans-serif;
+        }
+        .choose-us-content {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+        .choose-us-content img {
+            max-width: 50%;
+            height: auto;
+            flex: 1;
+            margin-left: 20px;
+        }
+        @media (max-width: 768px) {
+            .choose-us-content {
+                flex-direction: column;
+            }
+            .choose-us-content img {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+</style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+<br><br>
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1 style="font-size:50px" class="text-3xl font-semibold">Welcome</h1>
+            <p style="font-size:20px ">We are here to help you</p>
+        </div>
+    </div>
+<br><br>
+<section>
+    <div class="choose-us-container">
+        <h2 class="text-3xl font-semibold text-indigo-950">Why Choose Us</h2>
+        <div class="choose-us-content">
+            <p class="text-xl">Choosing our online healthcare system offers a blend of convenience, comprehensive care, and cutting-edge technology that sets us apart. Our platform is designed to provide seamless access to a wide range of medical services, ensuring that you receive timely and personalized care from the comfort of your home. We employ a team of highly qualified healthcare professionals, including specialists in various fields.</p>
+            <img src="https://themes.hibootstrap.com/hospa/wp-content/uploads/2024/03/about.png" alt="Healthcare">
+        </div>
+    </div>
+</section>
+<br>
+<br>
+
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <div class="sm:hidden">
+            <label for="tabs" class="sr-only">Select tab</label>
+            <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option >Statistics</option>
+                <option>Services</option>
+                <option>FAQ</option>
+            </select>
+  </div>
+  <ul class="hidden text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg sm:flex dark:divide-gray-600 dark:text-gray-400 rtl:divide-x-reverse" id="fullWidthTab" data-tabs-toggle="#fullWidthTabContent" role="tablist">
+      <li class="w-full">
+          <button id="stats-tab" data-tabs-target="#stats" type="button" role="tab" aria-controls="stats" aria-selected="true" class="inline-block w-full p-4 rounded-ss-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Statistics</button>
+      </li>
+      <li class="w-full">
+          <button id="about-tab" data-tabs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false" class="inline-block w-full p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">Services</button>
+        </li>
+      <li class="w-full">
+          <button id="faq-tab" data-tabs-target="#faq" type="button" role="tab" aria-controls="faq" aria-selected="false" class="inline-block w-full p-4 rounded-se-lg bg-gray-50 hover:bg-gray-100 focus:outline-none dark:bg-gray-700 dark:hover:bg-gray-600">FAQ</button>
+      </li>
+  </ul>
+  <section  style="background-color: rgb(161, 191, 209);">
+
+
+  <div id="fullWidthTabContent" class="border-t border-gray-200 dark:border-gray-600 ">
+      <div class="hidden p-4 rounded-lg md:p-8 dark:bg-gray-800" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+          <dl class="grid max-w-screen-xl grid-cols-2 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-3 xl:grid-cols-6 dark:text-w sm:p-8">
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">73M+</dt>
+                  <dd class="text-white-500 dark:text-white-400">Happy customer</dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">100M+</dt>
+                  <dd class="text-white-500 dark:text-white-400">Top Hospitalality</dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">1000s</dt>
+                  <dd class="text-white-500 dark:text-white-400">Innovative Approch</dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">1B+</dt>
+                  <dd class="text-white-500 dark:text-white-400">Contributors</dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">90+</dt>
+                  <dd class="text-white-500 dark:text-white-400">Lung Replacement</dd>
+              </div>
+              <div class="flex flex-col items-center justify-center">
+                  <dt class="mb-2 text-3xl font-extrabold">4M+</dt>
+                  <dd class="text-white-500 dark:text-white-400">professionals</dd>
+              </div>
+          </dl>
+      </div>
+      <div class="hidden p-4 bg- rounded-lg md:p-8 dark:bg-gray-800" id="about" role="tabpanel" aria-labelledby="about-tab">
+          <!-- List -->
+          <ul role="list" class="space-y-4 text-white dark:text-white-500 ">
+              <li class="flex space-x-2 rtl:space-x-reverse items-center">
+                  <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  <span class="leading-tight">professionals</span>
+              </li>
+              <li class="flex space-x-2 rtl:space-x-reverse items-center">
+                  <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  <span class="leading-tight">24/7 support</span>
+              </li>
+              <li class="flex space-x-2 rtl:space-x-reverse items-center">
+                  <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  <span class="leading-tight">Advanced Technology</span>
+              </li>
+              <li class="flex space-x-2 rtl:space-x-reverse items-center">
+                  <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                  </svg>
+                  <span class="leading-tight">Online Prescriptions and Medication Delivery</span>
+              </li>
+          </ul>
+      </div>
+      <div class="hidden p-4 bg- rounded-lg dark:bg-white-800" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+          <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-800 text-white-900 dark:text-white" data-inactive-classes="text-white-500 dark:white-gray-400">
+              <h2 id="accordion-flush-heading-1">
+                  <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-white-200 dark:border-white-700 dark:text-white-400" data-accordion-target="#accordion-flush-body-1" aria-expanded="true" aria-controls="accordion-flush-body-1">
+                  <span>
+                    How do I schedule an online consultation with a doctor?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                  </button>
+              </h2>
+              <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
+                  <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400"></p>
+                  <p class="text-gray-500 dark:text-gray-400">You can schedule an online consultation with a doctor by downloading and signing up for the HealthEasy app.<a href="/docs/getting-started/introduction/" class="text-blue-600 dark:text-blue-500 hover:underline"></a> </p>
+                  </div>
+              </div>
+              <h2 id="accordion-flush-heading-2">
+                  <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-2" aria-expanded="false" aria-controls="accordion-flush-body-2">
+                  <span>How do I know if the online doctor I am consulting is qualified?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                  </button>
+              </h2>
+              <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
+                  <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">
+                    HealthEasy has MD-level doctors. Hence, ensuring you have access to qualified medical professionals.</p>
+                  </div>
+              </div>
+              <h2 id="accordion-flush-heading-3">
+                  <button type="button" class="flex items-center justify-between w-full py-5 font-medium text-left rtl:text-right text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400" data-accordion-target="#accordion-flush-body-3" aria-expanded="false" aria-controls="accordion-flush-body-3">
+                  <span> 
+                    How do I pay for an online consultation?</span>
+                  <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                  </svg>
+                  </button>
+              </h2>
+              <div id="accordion-flush-body-3" class="hidden" aria-labelledby="accordion-flush-heading-3">
+                  <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+                  <p class="mb-2 text-gray-500 dark:text-gray-400">Payments for the consultation can be made online.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+<br>
+<section>
+
+
+<h1 class="text-3xl font-semibold" >Gallaery</h1>
+
+<div class="gallery">
+    <img src="https://images.pexels.com/photos/2324837/pexels-photo-2324837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://images.pexels.com/photos/1170979/pexels-photo-1170979.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://images.pexels.com/photos/6129681/pexels-photo-6129681.jpeg?auto=compress&cs=tinysrgb&w=600">
+    <img src="https://images.pexels.com/photos/6129151/pexels-photo-6129151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    <img src="https://www.brightsidemedical.com.au/wp-content/uploads/2019/03/happy-doctors.jpg">
+</div>
+
+</section>
+<br>
+<br>
+<section>
+   
+<h1 class="text-3xl font-semibold" >Testimonials</h1>
+<p style="text-align: center;">What our Patients Are Saying</p> 
+
+<div class="grid mb-8 border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 md:mb-12 md:grid-cols-2 bg-white dark:bg-gray-800">
+    <figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e dark:bg-gray-800 dark:border-gray-700">
+        <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <p class="my-4">"Executive health check up  service was excellent and worth doing it"</p>
+        </blockquote>
+        <figcaption class="flex items-center justify-center ">
+            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png" alt="profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                <div>Bonnie Green</div>
+            </div>
+        </figcaption>    
+    </figure>
+    <figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 md:rounded-se-lg dark:bg-gray-800 dark:border-gray-700">
+        <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <p class="my-4">I am grateful to the management and staff of The Hospital,  where I have undergone an emergency surgery.</p>
+        </blockquote>
+        <figcaption class="flex items-center justify-center ">
+            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png" alt="profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                <div>Roberta Casas</div>
+            </div>
+        </figcaption>    
+    </figure>
+    <figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-b border-gray-200 md:rounded-es-lg md:border-b-0 md:border-e dark:bg-gray-800 dark:border-gray-700">
+        <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <p>Dr Ravikanth is excellent for thyroid surgery case. Thank you Doctor</p>
+        </blockquote>
+        <figcaption class="flex items-center justify-center ">
+            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                <div>Jese Leos</div>
+            </div>
+        </figcaption>    
+    </figure>
+    <figure class="flex flex-col items-center justify-center p-8 text-center bg-white border-gray-200 rounded-b-lg md:rounded-se-lg dark:bg-gray-800 dark:border-gray-700">
+        <blockquote class="max-w-2xl mx-auto mb-4 text-gray-500 lg:mb-8 dark:text-gray-400">
+            <p class="my-4">"I am profoundly grateful for the exceptional care and support provided by the remarkable team "</p>
+        </blockquote>
+        <figcaption class="flex items-center justify-center ">
+            <img class="rounded-full w-9 h-9" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png" alt="profile picture">
+            <div class="space-y-0.5 font-medium dark:text-white text-left rtl:text-right ms-3">
+                <div>Joseph McFall</div>
+            </div>
+        </figcaption>    
+    </figure>
+</div>
+
+</section>
+<footer>
+    {% include 'footer.html' %}
+</footer>
+</body>
+</html>
