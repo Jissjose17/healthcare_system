@@ -273,9 +273,6 @@ def delete_patients(request):
 
 
 
-def profile(request, data):
-    user_details = get_object_or_404(Patient, id=data)
-    return render(request, 'patient/profile.html', {'user_details': user_details})
 
 
 def about(request):
@@ -305,9 +302,10 @@ def create_prescription(request):
 
 
 def doctor_appointments(request):
-    appointments = Appointment.objects.all()
-    patient=Patient.objects.all()
-    return render(request, 'doctor/viewappointments.html', {'appointments': appointments,'patient':patient})
+    doctor = get_object_or_404(Doctor, user=request.user)
+    appointments = Appointment.objects.filter(doctor=doctor)
+    return render(request, 'doctor/viewappointments.html', {'appointments': appointments})
+
 
 
 def update_appointment_status(request, appointment_id,status):
@@ -318,9 +316,6 @@ def update_appointment_status(request, appointment_id,status):
     return redirect('doctor_appointments')
 
 
-def view_prescriptions(request):
-    prescriptions = Prescription.objects.all()
-    return render(request, 'doctor/view_prescriptions.html', {'prescriptions': prescriptions})
 
 
 def delete_prescription(request, prescription_id):
@@ -329,9 +324,15 @@ def delete_prescription(request, prescription_id):
     return redirect('view_prescriptions')
 
 def prescriptionpage(request):
-    doctors = Doctor.objects.all()
-    appointments = Appointment.objects.all()
-    return render(request, 'doctor/create_prescription.html', {'doctors': doctors,'appointments': appointments} )
+    doctors =get_object_or_404(Doctor, user=request.user)
+    appointments = Appointment.objects.filter(doctor=doctors)
+    return render(request, 'doctor/create_prescription.html', {'appointments': appointments} )
+
+
+def view_prescriptions(request):
+    doctor = get_object_or_404(Doctor, user=request.user)
+    prescriptions = Prescription.objects.filter(doctor=doctor)
+    return render(request, 'doctor/view_prescriptions.html', {'prescriptions': prescriptions})
 
 
 def patient_appointments(request):
@@ -435,7 +436,15 @@ def create_receiptpage(request):
     return render(request, 'admin/create_receipt.html',{'appointments':appointment,'prescriptions':prescription})
 
 
+def delete_appointment(request, appointment_id):
+    appointment = Appointment.objects.get(id=appointment_id)
+    appointment.delete()
+    return redirect(reverse('create_receiptpage'))
 
+def delete_prescription(request, prescription_id):
+    prescription = Prescription.objects.get(id=prescription_id)
+    prescription.delete()
+    return redirect(reverse('create_receiptpage')) 
 def create_receipt(request):
     if request.method == 'POST':
         invoice_number = request.POST.get('invoice_number')
@@ -476,10 +485,13 @@ def view_receiptpage(request):
     return render(request, 'admin/view_receiptpage.html', {'receipt': receipts})
 
 
-def delete_receipt(request,receipt_id):
-    receipt = get_object_or_404(Receipt, id=receipt_id)
-    receipt.delete()
-    return redirect('view_receiptpage')
+def delete_receipt(request, receipt_id):
+    try:
+        receipt = Receipt.objects.get(id=receipt_id)
+        receipt.delete()
+        return redirect('view_receiptpage')
+    except Receipt.DoesNotExist:
+        return HttpResponse('Receipt not found', status=404)
 
 
 def patient_viewreceipt(request):

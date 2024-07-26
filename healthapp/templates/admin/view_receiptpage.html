@@ -4,67 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receipt</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 50%;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-        }
-        .header {
-            text-align: center;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section h2 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #333;
-        }
-        .section p {
-            margin: 5px 0;
-            color: #555;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    {% for receipt in receipt %}
-    <div class="container">
-        <div class="header">
-            <h1>Receipt</h1>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-4">
+        {% for receipt in receipt %}
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="text-center mb-4">
+                <h1 class="text-2xl font-bold text-gray-700">Receipt</h1>
+            </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-600">Hospital Details</h2>
+                <p class="text-gray-700"><strong>Hospital Name:</strong> {{ receipt.hospital_name }}</p>
+                <p class="text-gray-700"><strong>Phone:</strong> {{ receipt.hospital_phone }}</p>
+                <p class="text-gray-700"><strong>Email:</strong> {{ receipt.hospital_email }}</p>
+            </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-600">Patient Details</h2>
+                <p class="text-gray-700"><strong>Patient Name:</strong> {{ receipt.patient_name }}</p>
+                <p class="text-gray-700"><strong>Symptoms:</strong> {{ receipt.symptoms }}</p>
+            </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-600">Doctor Details</h2>
+                <p class="text-gray-700"><strong>Doctor:</strong> {{ receipt.doctor }}</p>
+                <p class="text-gray-700"><strong>Doctor Fee:</strong> {{ receipt.doctor_fee }}</p>
+            </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-600">Prescription Details</h2>
+                <p class="text-gray-700"><strong>Prescription:</strong> {{ receipt.prescription }}</p>
+                <p class="text-gray-700"><strong>Prescription Amount:</strong> {{ receipt.prescription_amount }}</p>
+            </div>
+            <div class="mb-4">
+                <h2 class="text-xl font-semibold text-gray-600">Total Amount</h2>
+                <p class="text-gray-700"><strong>Total Amount:</strong> {{ receipt.total_amount }}</p>
+            </div>
+            <div class="text-right">
+                <form action="{% url 'delete_receipt' receipt.id %}" method="post" class="inline-block">
+                    {% csrf_token %}
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Delete
+                    </button>
+                </form>
+            </div>
         </div>
-        <div class="section">
-            <h2>Hospital Details</h2>
-            <p><strong>Hospital Name:</strong> {{ receipt.hospital_name }}</p>
-            <p><strong>Phone:</strong> {{ receipt.hospital_phone }}</p>
-            <p><strong>Email:</strong> {{ receipt.hospital_email }}</p>
-        </div>
-        <div class="section">
-            <h2>Patient Details</h2>
-            <p><strong>Patient Name:</strong> {{ receipt.patient_name }}</p>
-            <p><strong>Symptoms:</strong> {{ receipt.symptoms }}</p>
-        </div>
-        <div class="section">
-            <h2>Doctor Details</h2>
-            <p><strong>Doctor:</strong> {{ receipt.doctor }}</p>
-            <p><strong>Doctor Fee:</strong> {{ receipt.doctor_fee }}</p>
-        </div>
-        <div class="section">
-            <h2>Prescription Details</h2>
-            <p><strong>Prescription:</strong> {{ receipt.prescription }}</p>
-            <p><strong>Prescription Amount:</strong> {{ receipt.prescription_amount }}</p>
-        </div>
-        <div class="section">
-            <h2>Total Amount</h2>
-            <p><strong>Total Amount:</strong> {{ receipt.total_amount }}</p>
-        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </body>
 </html>

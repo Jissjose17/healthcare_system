@@ -11,11 +11,17 @@
         background-image: url();
         background-size: cover;
         background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    footer {
+        margin-top: auto;
     }
 </style>
-<body class="bg-gray-100">
+<body class="bg-gray-100 flex flex-col">
     {% include 'navbar.html' %} <br><br>
-    <div class="container mx-auto px-4 py-8">
+    <div class="container mx-auto px-4 py-8 flex-grow">
         <h1 class="text-4xl font-bold text-center mb-8">Book an Appointment</h1>
 
         <!-- Search Bar -->
@@ -24,7 +30,7 @@
             <button onclick="searchDoctors()" class="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-700">Search</button>
         </div>
 
-        <!-- Doctors Grid -->
+        <!-- Doctors List -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="doctorsGrid">
             {% for doctor in doctors %}
             <div class="doctor-card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -41,7 +47,6 @@
                             <li>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
                             </li>
-                           
                         </ul>
                     </div>
                 </div>
@@ -57,10 +62,9 @@
                     <div class="flex mt-4 md:mt-6">
                         <a href="{% url 'create_appointmentpage' doctor.id %}" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Book Appointment</a>
                     </div>
-                    
-                    {% endfor %}
-               </div>
+                </div>
             </div>
+            {% endfor %}
         </div>
     </div>
     <footer>

@@ -49,7 +49,9 @@ urlpatterns = [
     path('appointment-success/', views.appointment_success, name='appointment_success'),
     path('create_receipt', views.create_receipt, name='create_receipt'),
     path('create_receiptpage/', views.create_receiptpage, name='create_receiptpage'),
-    path('delete_receipt/<int:receipt_id>/', views.delete_receipt, name='delete_receipt'),
+    path('delete-receipt/<int:receipt_id>/', views.delete_receipt, name='delete_receipt'),
     path('view_receiptpage/', views.view_receiptpage, name='view_receiptpage'),
     path('patient_viewreceipt', views.patient_viewreceipt, name='patient_viewreceipt'),
+    path('delete_appointment/<int:appointment_id>/', views.delete_appointment, name='delete_appointment'),
+    path('delete_prescription/<int:prescription_id>/', views.delete_prescription, name='delete_prescription'),
 ]

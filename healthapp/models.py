@@ -59,6 +59,7 @@ class Prescription(models.Model):
     symptoms = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='prescriptions_with_symptoms', null=True)
     prescription = models.CharField(max_length=2500, null=True)
     patient_name = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='prescriptions_with_patient', null=True)
+    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='prescriptions')
 
     def __str__(self):
         return self.patient_name.patient_name

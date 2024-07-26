@@ -1,169 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services - Hospital Management System</title>
-    <!-- Include Tailwind CSS -->
+    <title>Hospital Services</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
 </head>
-{% include 'navbar.html' %}
+<body class="bg-gray-100">
+    {% include 'navbar.html' %}
 <br><br>
+<h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8 p-6">Our Services</h2>
 
-<section class="mt-5">
 
-    <div class="sm:hidden ">
-        <label for="tabs" class="sr-only">Select your country</label>
-     <select id="tabs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-        <option>Profile</option>
-        <option>Dashboard</option>
-        <option>setting</option>
-        <option>Invoioce</option>
-     </select>
-   </div>
-<ul class="hidden text-sm font-medium text-center text-gray-500 rounded-lg shadow sm:flex dark:divide-gray-700 dark:text-gray-400">
-    
-    <li class="w-full focus-within:z-10">
-        <a href="#" class="inline-block w-full p-4 bg-white border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Dashboard</a>
-    </li>
-    <li class="w-full focus-within:z-10">
-        <a href="#" class="inline-block w-full p-4 bg-white border-r border-gray-200 dark:border-gray-700 hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Settings</a>
-    </li>
-    <li class="w-full focus-within:z-10">
-        <a href="#" class="inline-block w-full p-4 bg-white border-s-0 border-gray-200 dark:border-gray-700 rounded-e-lg hover:text-gray-700 hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700">Invoice</a>
-    </li>
-</ul>
-</section>
-
-<body class="bg-gray-100 m-0" style="background-image: url(https://png.pngtree.com/background/20231016/original/pngtree-d-composite-image-of-doctor-s-torso-with-stethoscope-in-hand-picture-image_5577359.jpg);">
-    <div class="container mx-auto py-8 px-4"><br>
-        <h1 class="text-3xl font-semibold mb-4"></h1><br>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Service Item 1 -->
-           
-
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://static.vecteezy.com/system/resources/previews/011/718/509/non_2x/brain-logo-template-design-brainstorm-logo-ideas-neurology-logo-think-idea-concept-free-vector.jpg" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Neurology</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Neurology is the branch of medicine dealing with the diagnosis and treatment of all categories of conditions and disease involving the nervous system, which comprises the brain, the spinal cord and the peripheral nerves.</p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+    <!-- Services Section -->
+    <section class="py-10 px-5 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Service Card -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://assets.clevelandclinic.org/transform/LargeFeatureImage/e8300515-6397-42f4-afe0-c0038b9952b2/doctor-Patient-at-Appointment-1400046250-770x533-1_jpg" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Health Policy</h2>
+                    <p class="text-gray-600 mb-4">Comprehensive health policy to cover all your medical needs.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹15000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
 
-
-
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://w7.pngwing.com/pngs/621/257/png-transparent-obstetrics-and-gynaecology-obstetrics-and-gynaecology-clinic-hospital-obstetrics-s-purple-blue-text-thumbnail.png" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Gynaecology</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Gynaecology or gynecology is the area of medicine that involves the treatment of women's diseases, especially those of the reproductive organs. It is often paired with the field of obstetrics, forming the combined area of obstetrics and gynaecology. The term comes from Greek and means "the science of women". </p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+            <!-- Repeat for each service -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://aighospitals.com/uploads/images/1683712622645b6a6e1f3e7.jpg" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Family Health Package</h2>
+                    <p class="text-gray-600 mb-4">Affordable health packages for your entire family.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹50000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
 
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://cdn4.iconfinder.com/data/icons/medical-services-specialties-set-4/256/12-01-512.png" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Oncology</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Oncology is a branch of medicine that deals with the study, treatment, diagnosis, and prevention of cancer. A medical professional who practices oncology is an oncologist. The name's etymological origin is the Greek word ὄγκος, meaning "tumor", "volume" or "mass".</p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2023-12/17/full/1702832643-9438.jpg?im=FeatureCrop,size=(826,465)" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Children's Health Package</h2>
+                    <p class="text-gray-600 mb-4">Special health packages tailored for children.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹20000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
 
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://t3.ftcdn.net/jpg/01/67/15/90/360_F_167159091_GdRgYr8IM2tlvbxRvn9hjMjA6V74QZNW.jpg" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Vascular surgery</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Vascular surgery is a surgical subspecialty in which vascular diseases involving the arteries, veins, or lymphatic vessels, are managed by medical therapy, minimally-invasive catheter procedures and surgical reconstruction.</p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://www.usnews.com/object/image/00000146-8e80-d02e-a7ef-deec08a40000/140612-malepatientdoctor-stock.jpg?update-time=1522271130873&size=responsive970" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Health Package for Males</h2>
+                    <p class="text-gray-600 mb-4">Health packages specifically designed for males.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹25000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
 
-            
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://static.vecteezy.com/system/resources/previews/006/397/893/non_2x/cardiology-icon-cardiovascular-icon-free-vector.jpg" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Cardiology</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Cardiology is the study of the heart. Cardiology is a branch of medicine that deals with disorders of the heart and the cardiovascular system. The field includes medical diagnosis and treatment of congenital heart defects, coronary artery disease, heart failure, valvular heart disease, and electrophysiology</p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://weillcornell.org/sites/default/files/styles/custom__1440x960_/public/news_images/shutterstock_221885869.jpg?itok=h8GMniVX" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Health Package for Females</h2>
+                    <p class="text-gray-600 mb-4">Health packages specifically designed for females.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹25000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
 
-            
-            <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
-                    <img src="https://s.tmimgcdn.com/scr/1200x750/166200/chiropractic-medical-vector-logo-template_166226-original.jpg" alt="icon">
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Orthopedics</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Orthopedic surgery or orthopedics is the branch of surgery concerned with conditions involving the musculoskeletal system. Orthopedic surgeons use both surgical and nonsurgical means to treat musculoskeletal trauma, spine diseases, sports injuries, degenerative diseases, infections, tumors, and congenital disorders.</p>
-                    <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://eadn-wc03-10065032.nxedge.io/wp-content/uploads/2022/10/Dentist-in-Gilbert-AZ.png" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Dental Health Package</h2>
+                    <p class="text-gray-600 mb-4">Comprehensive dental health services.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹10000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
                 </div>
             </div>
-            
 
-            <!-- Add more service items as needed -->
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://publichealth.jhu.edu/sites/default/files/styles/article_feature/public/2023-10/world-mental-health-day.png?h=6e972868&itok=j9E5IBUa" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Mental Health Package</h2>
+                    <p class="text-gray-600 mb-4">Comprehensive mental health services and support.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹30000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="https://www.healthcare-spaces.com/wp-content/uploads/2022/05/iStock-503764680.jpg" alt="Service Image" class="w-full h-48 object-cover">
+                <div class="p-6">
+                    <h2 class="text-xl font-bold mb-2">Senior Health Package</h2>
+                    <p class="text-gray-600 mb-4">Special health packages tailored for seniors.</p>
+                    <p class="text-gray-800 font-semibold mb-4">₹40000/year</p>
+                    <a href="#" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-500">Read More</a>
+                </div>
+            </div>
         </div>
-    </div>
-    <br><br>
-    <footer>
-        {% include 'footer.html' %}
-    </footer>
+    </section>
+<footer>
+    {% include 'footer.html' %}
+</footer>
 </body>
-
 </html>
