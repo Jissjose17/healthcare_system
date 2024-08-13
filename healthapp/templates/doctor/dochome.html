@@ -1,110 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doctor Dashboard</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      padding-top: 56px;
-    }
-    .sidebar {
-      height: 100vh;
-      position: fixed;
-      top: 56px;
-      left: 0;
-      z-index: 1000;
-      padding: 1rem;
-      overflow-x: hidden;
-      overflow-y: auto;
-    }
-    .main-content {
-      margin-left: 250px;
-      padding: 1rem;
-    }
-    .card-summary {
-      margin-bottom: 1rem;
-    }
-    a{
-      text-decoration: none;
-    }
-    .nav-link{
-   color: #ffffff;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #051c33;
+    color: #fff;
+    padding: 20px;
+}
+
+.sidebar .logo h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.sidebar .menu li {
+    padding: 10px 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .user-info {
+    display: flex;
+    align-items: center;
+}
+
+.header .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.header .greeting h3, .header .greeting p {
+    margin: 0;
+}
+
+.header .visitor-info {
+    text-align: right;
+}
+
+.summary {
+    margin-top: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+    padding: 10px;
+    background-color: #051a3e;
+    border-radius: 5px;
+}
+
+.schedule {
+    margin-top: 20px;
+}
+
+.schedule table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.schedule th, .schedule td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.specialists {
+    margin-top: 20px;
+}
+
+.specialist-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.specialist-item {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    background-color: #1083a0;
+    border-radius: 5px;
+    margin: 0 10px;
+}
+
+.emergency {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ffdddd;
+    text-align: center;
+    border-radius: 5px;
+}
+h4,p {
+  color: #fff;
+}
+li{
+
+  color: #fff;
+  text-decoration: none;
+}
+</style>
 <body>
-  <!-- Header -->
-  <nav class="navbar navbar-expand-lg navbar-dark  fixed-top"style="background-color: rgb(3, 13, 79);">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Doctor Dashboard</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-         
-          <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Appointments</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-          </li>
+    <div class="sidebar">
+        <div class="logo">
+            <h2>HealthEasy</h2>
+        </div>
+        <ul class="menu">
+           <a href="{% url 'dochomepage' %}"><li>Home</li></a>
+           <a href="{% url 'doctor_appointments' %}"><li>Appointments</li></a>
+           <a href="{% url 'prescriptionpage'  %}"><li>Priscription</li></a>
+           <a href="{% url 'view_prescriptions' %}"><li>View Priscription</li></a>
+           <a href="{% url 'logout' %}"><li>Logout</li></a>
+            <li>Settings</li>
         </ul>
-      </div>
     </div>
-  </nav>
-
-  <!-- Sidebar -->
-  <div class=" sidebar" style="background-color: rgb(3, 13, 79);">
-    <h5 style="color: aliceblue;">Quick Links</h5>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'prescriptionpage' %}">CREATE PRESCRIPTION</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'view_prescriptions' %}">VIEW PRESCRIPTION</a>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card text-white  mb-3 card-summary"  style="background-color: rgb(3, 13, 79);">
-            <div class="card-body">
-              <h5 class="card-title">TOTAL APPOINTMENTS</h5>
-              <a href="{% url 'doctor_appointments' %}"><button type="button" class="btn btn-light">View</button></a>
+    <div class="main-content">
+        <div class="header">
+            <div class="user-info">
+                {% if doctor.image %}
+                <img src="{{ doctor.image.url }}" alt="Doctor">
+                {% endif %}
+                <div class="greeting">
+                    <h3>{{ doctor.name }}</h3>
+                </div>
             </div>
-          </div>
+           
         </div>
-        <div class="col-md-4">
-            <div class="card text-white  mb-3 card-summary"  style="background-color: rgb(3, 13, 79);">
-            <div class="card-body">
-              <h5 class="card-title">ALLOW PRESCRIPTION</h5>
-              <a href="{% url 'prescriptionpage' %}"><button type="button" class="btn btn-light">Allow</button></a>
+       
+        <div class="stats">
+            <div class="stat-item">
+                <h4>3500</h4>
+                <p>Total Patients</p>
             </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white  mb-3 card-summary"  style="background-color: rgb(3, 13, 79);">
-            <div class="card-body">
-              <h5 class="card-title">VIEW PRESCRIPTION</h5>
-              <a href="{% url 'view_prescriptions' %} "><button type="button" class="btn btn-light">view</button></a>
+            <div class="stat-item">
+                <h4>50</h4>
+                <p>Available Staff</p>
             </div>
-          </div>
+            <div class="stat-item">
+                <h4>300</h4>
+                <p>Available Doctors</p>
+            </div>
         </div>
+        <div class="summary">
+          <canvas id="summaryChart"></canvas>
       </div>
+        <div class="schedule">
+            <h3>Schedule</h3>
+            <table>
+                <tr>
+                    <th>Cardiologist</th>
+                    <td>OPD 1</td>
+                    <td>Wed</td>
+                    <td>09:00 AM</td>
+                </tr>
+                <tr>
+                    <th>Neurologist</th>
+                    <td>OPD 1</td>
+                    <td>Tue</td>
+                    <td>09:00 AM</td>
+                </tr>
+            </table>
+        </div>
+        <div class="specialists">
+            <h3>All Specialist</h3>
+            <div class="specialist-list">
+                <div class="specialist-item">Cardiologist</div>
+                <div class="specialist-item">Neurologist</div>
+                <div class="specialist-item">Radiologist</div>
+            </div>
+        </div>
+       
+    </div>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+    const ctx = document.getElementById('summaryChart').getContext('2d');
+    const summaryChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['May 5', 'May 6', 'May 7', 'May 8', 'May 9', 'May 10', 'May 11', 'May 12', 'May 13'],
+            datasets: [{
+                label: 'This month',
+                data: [50, 55, 60, 70, 65, 75, 80, 85, 82],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+});
 
-     
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    </script>
 </body>
 </html>

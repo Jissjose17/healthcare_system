@@ -15,7 +15,7 @@ class CustomUser(AbstractUser):
 class Doctor(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, limit_choices_to={'user_type': 2})
     name = models.CharField(max_length=50)
-    mobile = models.IntegerField()
+    mobile = models.BigIntegerField()
     special = models.CharField(max_length=50)
     about = models.CharField(max_length=50)
     image = models.ImageField(upload_to='doctors/', blank=True, null=True)
@@ -27,7 +27,7 @@ class Patient(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, limit_choices_to={'user_type': 3})
     name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10)
-    mobile = models.IntegerField()
+    mobile = models.BigIntegerField()
     address = models.CharField(max_length=100)
     image= models.ImageField(upload_to='patients/', blank=True, null=True)
 
@@ -48,7 +48,7 @@ class Appointment(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='PENDING')
 
     def __str__(self):
-        return f"{self.patient.name} - {self.date} {self.time}"
+        return f"{self.patient_name}"
 
 
 
@@ -59,10 +59,10 @@ class Prescription(models.Model):
     symptoms = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='prescriptions_with_symptoms', null=True)
     prescription = models.CharField(max_length=2500, null=True)
     patient_name = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='prescriptions_with_patient', null=True)
-    doctor = models.ForeignKey(Doctor, on_delete=models.CASCADE, related_name='prescriptions')
 
     def __str__(self):
         return self.patient_name.patient_name
+
 
 class Payment(models.Model):
     name = models.CharField(max_length=100)

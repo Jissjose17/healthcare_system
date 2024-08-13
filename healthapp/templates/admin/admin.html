@@ -4,156 +4,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
         }
+
         .sidebar {
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 250px;
-            background-color: #343a40;
+            height: 100vh;
+            background-color: #1c1c1c;
+            color: white;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding-top: 20px;
         }
-        .sidebar a {
-            padding: 15px;
-            text-decoration: none;
-            font-size: 18px;
-            color: white;
-            display: block;
-        }
-        .sidebar a:hover {
-            background-color: #007bff;
-            color: white;
-        }
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-        }
-        .navbar {
-            margin-left: 250px;
-        }
-        .card {
+
+        .profile {
+            text-align: center;
             margin-bottom: 20px;
         }
-     a{
-         text-decoration: none;
-     }
+
+        .profile img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }
+
+        .profile h3 {
+            margin: 10px 0 0 0;
+            font-size: 18px;
+        }
+
+        .profile p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .nav {
+            list-style: none;
+            padding: 0;
+            width: 100%;
+        }
+
+        .nav-item {
+            width: 100%;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-link:hover {
+            background-color: #333;
+        }
+
+        .nav-link.active {
+            background-color: #575757;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            margin-left: 250px; /* Adjusted to account for the fixed sidebar */
+            background-color: #f4f7f9;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header .search-bar {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .header .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .header .admin-info {
+            text-align: right;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1 1 calc(33.333% - 20px);
+            margin: 10px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-item a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .chart-container {
+            width: 48%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
-
     <div class="sidebar">
-        <h3 class="text-center text-white">Admin Dashboard</h3>
-        <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-        <a href="{% url 'add_doctor' %}"><i class="fas fa-user"></i> Add Doctor</a>
-        <a href="{% url 'create_receiptpage' %}"><i class="fa-solid fa-receipt"></i>Create Receipt</a>
-        <a href="{% url 'view_receiptpage' %}"><i class="fa-solid fa-receipt"></i>View Receipt</a>
-        <a href="{% url 'logoutadmin' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        <div class="profile">
+            <img src="https://t4.ftcdn.net/jpg/04/75/00/99/360_F_475009987_zwsk4c77x3cTpcI3W1C1LU4pOSyPKaqi.jpg" alt="User Profile">
+            <h3>HealthEasy</h3>
+            <p>Admin</p>
+        </div>
+        <ul class="nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-tachometer-alt"></i> Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-user"></i> Patients
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="fa-thin fa-user-nurse"></i> Doctors
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-solid fa-hospital-user"></i>Appointments
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa-thin fa-receipt"></i> Receipt
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-map-marker-alt"></i> Location
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fa fa-cog"></i> Settings
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'logout' %}" class="nav-link">
+                    <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+            </li>
+        </ul>
     </div>
-
-    <div class="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Admin Dashboard</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logoutadmin' %}">Logout</a>
-                        </li>
-                    </ul>
-                </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="What are you looking for?">
             </div>
-        </nav>
-
-        <div class="container-fluid mt-3">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header font-weight-bold">PATIENTS</div>
-                        <div class="card-body">
-                            <a href="{% url 'view_patients' %}"><button type="button" class="btn btn-warning">View</button></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">                
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header font-weight-bold">DOCTORS</div>
-                        <div class="card-body">
-                            <a href="{% url 'view_doctors' %}"><button type="button" class="btn btn-warning">View</button></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="card text-white bg-dark mb-3">
-                        <div class="card-header font-weight-bold">PAYMENTS</div>
-                        <div class="card-body">
-                            <a href="{% url 'view_payment_page' %}"><button type="button" class="btn btn-warning">View</button></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                       
-                    <div class="card text-white bg-dark mb-3">
-                            <div class="card-header font-weight-bold">APPOINTMENTS</div>
-                        <div class="card-body">
-                            <a href="{% url 'adminview_appointments' %}"><button type="button" class="btn btn-warning">View</button></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="admin-info">
+                <p>Welcome back</p>
             </div>
-
-            <div class="card mt-4">
-                <div class="card-header">
-                    Users Chart
-                </div>
-                <div class="card-body">
-                    <canvas id="usersChart"></canvas>
-                </div>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <a href="{% url 'add_doctor' %}">Add Doctor</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'view_doctors' %}">Total Doctor</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'view_patients' %}">Total Patient</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'adminview_appointments' %}">Total Appointment</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'create_receiptpage' %}">Create Receipt</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'view_receiptpage' %}">View Receipt</a>
+            </div>
+            <div class="stat-item">
+                <a href="{% url 'view_payment_page' %}">Payments</a>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Chart.js for the sales chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var ctx = document.getElementById('usersChart').getContext('2d');
-        var usersChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: 'users',
-                    data: [12000, 19000, 3000, 5000, 2000, 30000],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>

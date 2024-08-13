@@ -168,7 +168,8 @@ def logoutadmin(request):
     return redirect('loginpage')
 
 def dochomepage(request):
-    return render(request,'doctor/dochome.html')
+    doctor=get_object_or_404(Doctor,user=request.user)
+    return render(request,'doctor/dochome.html',{'doctor':doctor})
 
 
 
@@ -278,7 +279,6 @@ def delete_patients(request):
 def about(request):
     return render(request, 'patient/about.html')
 
-
 def create_prescription(request):
     if request.method == 'POST':
         appointment_id = request.POST['appointment']
@@ -290,15 +290,13 @@ def create_prescription(request):
         prescription = Prescription(
             symptoms=appointment,
             prescription=prescription_text,
-            patient_name=appointment
+            patient_name=appointment,
         )
         prescription.save()
 
         messages.success(request, 'Prescription created successfully')
         return redirect('view_prescriptions')  # Redirect to view prescriptions page
 
-    appointments = Appointment.objects.all()
-    return render(request, 'doctor/create_prescription.html', {'appointments': appointments})
 
 
 def doctor_appointments(request):
@@ -324,14 +322,12 @@ def delete_prescription(request, prescription_id):
     return redirect('view_prescriptions')
 
 def prescriptionpage(request):
-    doctors =get_object_or_404(Doctor, user=request.user)
-    appointments = Appointment.objects.filter(doctor=doctors)
-    return render(request, 'doctor/create_prescription.html', {'appointments': appointments} )
+    appointment = Appointment.objects.all()
+    return render(request, 'doctor/create_prescription.html', {'appointments': appointment}) 
 
 
 def view_prescriptions(request):
-    doctor = get_object_or_404(Doctor, user=request.user)
-    prescriptions = Prescription.objects.filter(doctor=doctor)
+    prescriptions = Prescription.objects.filter()
     return render(request, 'doctor/view_prescriptions.html', {'prescriptions': prescriptions})
 
 
@@ -441,10 +437,7 @@ def delete_appointment(request, appointment_id):
     appointment.delete()
     return redirect(reverse('create_receiptpage'))
 
-def delete_prescription(request, prescription_id):
-    prescription = Prescription.objects.get(id=prescription_id)
-    prescription.delete()
-    return redirect(reverse('create_receiptpage')) 
+
 def create_receipt(request):
     if request.method == 'POST':
         invoice_number = request.POST.get('invoice_number')

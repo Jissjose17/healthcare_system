@@ -1,35 +1,197 @@
-<!-- templates/patient/view_receipt.html -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>View Receipt</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>HealthEasy - Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f2f2f2;
+        }
+
+        .header .invoice-info {
+            text-align: right;
+        }
+
+        .header .invoice-info h2 {
+            margin: 0;
+            color: #146c8a;
+        }
+
+        .header .invoice-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .header .hospital-info h3 {
+            margin: 0;
+            color: #38509b;
+        }
+
+        .header .hospital-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .invoice-title {
+            margin: 40px 0 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #146c8a;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th,
+        .table td {
+            padding: 12px;
+            border: 1px solid #f2f2f2;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #3d3172;
+            color: #fff;
+        }
+
+        .totals {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .totals .totals-table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        .totals .totals-table th,
+        .totals .totals-table td {
+            padding: 12px;
+            border: 1px solid #f2f2f2;
+            text-align: right;
+        }
+
+        .totals .totals-table th {
+            background-color: #f2f2f2;
+            color: #666;
+        }
+
+        .totals .totals-table td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        .grand-total {
+            font-size: 20px;
+            font-weight: bold;
+            color: #146c8a;
+        }
+
+        .payment-method {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
-        <h2 class="mt-4">Receipt Details</h2>
-        <div class="card mt-4">
-            <div class="card-header">
-                Receipt Information
-            </div>
-            <div class="card-body">
+        <div class="header">
+            <div class="hospital-info">
+                <h3>HealthEasy</h3>
                 {% for receipt in receipt %}
-                <p><strong>Invoice ID:</strong> {{ receipt.invoice_number }}</p>
-                <p><strong>Hospital Name:</strong> {{ receipt.hospital_name }}</p>
-                <p><strong>Hospital Phone:</strong> {{ receipt.hospital_phone }}</p>
-                <p><strong>Hospital Email:</strong> {{ receipt.hospital_email }}</p>
-                <p><strong>Patient:</strong> {{ receipt.patient_name}}</p>
-                <p><strong>Symptoms:</strong> {{ receipt.symptoms }}</p>
-                <p><strong>Doctor:</strong> {{ receipt.doctor}}</p>
-                <p><strong>Prescription:</strong> {{ receipt.prescription}}</p>
-                <p><strong>Doctor Fee:</strong> {{ receipt.doctor_fee }}</p>
-                <p><strong>Prescription Amount:</strong> {{ receipt.prescription_amount }}</p>
-                <p><strong>Total Amount:</strong> {{ receipt.total_amount }}</p>
-                {% endfor %}
+                <p>{{ receipt.hospital_name }}</p>
+                <p>{{ receipt.hospital_email }}</p>
+                <p>{{ receipt.hospital_phone }}</p>
             </div>
+            <div class="invoice-info">
+                <h2>RECEIPT</h2>
+                <p><strong>Invoice No:</strong> {{ receipt.invoice_number }}</p>
+                <p><strong>Patient:</strong> {{ receipt.patient_name }}</p>
+            </div>
+        </div>
+
+        <h3 class="invoice-title">Billing Information</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>01</td>
+                    <td>Doctor Fee</td>
+                    <td>₹{{ receipt.doctor_fee }}</td>
+                    <td>1</td>
+                    <td>₹{{ receipt.doctor_fee }}</td>
+                </tr>
+                <tr>
+                    <td>02</td>
+                    <td>Prescription</td>
+                    <td>₹{{ receipt.prescription_amount }}</td>
+                    <td>1</td>
+                    <td>₹{{ receipt.prescription_amount }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="totals">
+            <table class="totals-table">
+                <tr>
+                    <th>Subtotal</th>
+                    <td>₹{{ receipt.subtotal }}</td>
+                </tr>
+                <tr>
+                    <th>Tax (20%)</th>
+                    <td>₹{{ receipt.tax }}</td>
+                </tr>
+                <tr class="grand-total">
+                    <th>Grand Total</th>
+                    <td>₹{{ receipt.total_amount }}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+
+        <div class="payment-method">
+            <p><strong>Payment Method:</strong> Bank Transfer</p>
+            <p><strong>Account No:</strong> 00 123 647 840</p>
+            <p><strong>Account Name:</strong> HealthEasy</p>
+            <p><strong>Branch Name:</strong> XYZ</p>
         </div>
         <a href="{% url 'payment_page' %}" class="btn btn-primary mt-4">Make Payment</a>
     </div>
 </body>
+
 </html>
