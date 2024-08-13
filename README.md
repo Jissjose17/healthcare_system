@@ -62,10 +62,11 @@
 
 ![Screenshot 2024-08-13 132155](https://github.com/user-attachments/assets/02aa499b-b90a-4188-8fcc-fc919b88048d)
 
-<h6>Admin Dashboard </h6>
+<h2>Admin Dashboard </h2>
+
 ![Screenshot 2024-08-13 132516](https://github.com/user-attachments/assets/18937711-abb3-425f-86c7-e75a638f6ef2)
 
-<h6>Doctor Dashboard </h6>
+<h2>Doctor Dashboard </h2>
 
 ![Screenshot 2024-08-13 132546](https://github.com/user-attachments/assets/a04def0f-b4b0-4421-8e85-3d0482c7a4a8)
 
