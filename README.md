@@ -45,6 +45,29 @@
 <hr><p><span style="margin-right: 30px;"></span><a href="www.linkedin.com/in/jissjose17"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" style="width: 10%;"></a><span style="margin-right: 30px;"></span><a href="javascript:void(0)"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width: 10%;"></a></p>
 
 
+![Screenshot 2024-08-13 123606](https://github.com/user-attachments/assets/f14ba3db-87e6-4129-a207-0c76e43005b9)
+
+
+![Screenshot 2024-08-13 123620](https://github.com/user-attachments/assets/5de26764-df21-4cf9-9b4f-90bab97131db)
+
+
+![Screenshot 2024-08-13 123633](https://github.com/user-attachments/assets/0936fb1a-06fb-44e5-9c66-e8858f66e2b9)
+
+
+![Screenshot 2024-08-13 123650](https://github.com/user-attachments/assets/a1dab389-c37f-429d-a531-09d0fa0757da)
+
+
+![Screenshot 2024-08-13 132137](https://github.com/user-attachments/assets/c4ae3218-34df-4695-9136-04933f130ece)
+
+
+![Screenshot 2024-08-13 132155](https://github.com/user-attachments/assets/02aa499b-b90a-4188-8fcc-fc919b88048d)
+
+
+![Screenshot 2024-08-13 132516](https://github.com/user-attachments/assets/18937711-abb3-425f-86c7-e75a638f6ef2)
+
+
+![Screenshot 2024-08-13 132546](https://github.com/user-attachments/assets/a04def0f-b4b0-4421-8e85-3d0482c7a4a8)
+
 
 
 
